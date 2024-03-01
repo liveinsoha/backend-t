@@ -7,8 +7,7 @@ WORKDIR /usr/src/app
 ARG JAR_FILE=build/libs/*.jar
 COPY ${JAR_FILE} app.jar
 
-# 폴더 내부의 모든 파일 삭제 (jar 파일이 있으면)
-RUN if [ -f "app.jar" ]; then rm -rf *; fi
+
 
 # 환경 변수 설정
 #ENV MYSQL_HOST=localhost
