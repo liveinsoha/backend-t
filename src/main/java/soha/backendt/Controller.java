@@ -30,4 +30,9 @@ public class Controller {
     public ResponseEntity<String> hello2() {
         return new ResponseEntity<>("Hello from hello2", HttpStatus.OK);
     }
+
+    @GetMapping("/hello3")
+    public ResponseEntity<String> hello3() {
+        return new ResponseEntity<>("Hello from hello3", HttpStatus.OK);
+    }
 }
