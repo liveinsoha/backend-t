@@ -4,10 +4,7 @@ FROM openjdk:17-jdk-slim
 WORKDIR /usr/src/app
 
 # Spring Boot JAR 파일을 이미지에 복사
-ARG JAR_FILE=build/libs/*.jar
-COPY ${JAR_FILE} app.jar
-
-
+COPY ./build/libs/*.jar app.jar
 
 # 환경 변수 설정
 #ENV MYSQL_HOST=localhost
