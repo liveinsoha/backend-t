@@ -2,11 +2,10 @@ package soha.backendt;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
+import org.hibernate.sql.results.graph.basic.CoercingResultAssembler;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequiredArgsConstructor
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.RestController;
 @Slf4j
 public class Controller {
 
+    private final MemberService memberService;
 /*    private final ProductRepository productRepository;
 
     @GetMapping("/products")
@@ -22,6 +22,20 @@ public class Controller {
         List<Product> products = productRepository.findAll();
         return new ResponseEntity<>(products, HttpStatus.OK);
     }*/
+
+    @PostMapping("/member")
+    public ResponseEntity<String> memberCreate(@RequestBody MemberCreateRequest request){
+        memberService.createMember(request);
+        return ResponseEntity.status(HttpStatus.CREATED).body("가입 됨");
+    }
+
+
+
+    @GetMapping("/member/{id}")
+    public ResponseEntity<MemberResponseDto> merberDetails(@PathVariable Long id){
+        Member member = memberService.getMember(id);
+        return ResponseEntity.ok(new MemberResponseDto(member));
+    }
 
     @GetMapping("/hello1")
     public ResponseEntity<String> hello1() {

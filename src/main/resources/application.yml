@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: local
+    active: develop
 
 
 ---
@@ -38,13 +38,13 @@ spring:
 
   datasource:
     username: root
-    password: root1234
+    password: 1234
     url: jdbc:mysql://localhost:3306/metadb
     driver-class-name: com.mysql.cj.jdbc.Driver
 
   jpa:
     hibernate:
-      ddl-auto: none #create update none
+      ddl-auto: create #create update none
     properties:
       hibernate:
         default_batch_fetch_size: 100
