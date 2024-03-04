@@ -6,6 +6,7 @@ WORKDIR /usr/src/app
 # Spring Boot JAR 파일을 이미지에 복사
 COPY ./build/libs/*.jar app.jar
 
+ENV SPRING_PROFILES_ACTIVE=deploy
 # 환경 변수 설정
 #ENV MYSQL_HOST=localhost
 #ENV MYSQL_PORT=3306

@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: prod
+    active: local
 
 
 ---
@@ -8,7 +8,7 @@ spring:
 spring:
   config:
     activate:
-      on-profile: prod
+      on-profile: deploy
 
   datasource:
     url: ${SPRING_DATASOURCE_URL}
@@ -34,7 +34,7 @@ server:
 spring:
   config:
     activate:
-      on-profile: dev
+      on-profile: develop
 
   datasource:
     username: root
@@ -53,4 +53,31 @@ spring:
         dialect: org.hibernate.dialect.MySQLDialect
 
 server:
-  port: 8080
+  port: 9090
+
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local
+
+  datasource:
+    url: jdbc:h2:tcp://localhost/~/backend-t
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create #create update none
+    properties:
+      hibernate:
+        default_batch_fetch_size: 100
+        #show-sql: true
+        format_sql: true
+        dialect: org.hibernate.dialect.H2Dialect
+
+server:
+  port: 9090
